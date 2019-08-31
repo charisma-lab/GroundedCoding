@@ -8,86 +8,29 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
-
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
   </head>
   <body>
-  <div class="jumbotron text-center">
-    <h1>Webcam Server</h1>
-    <p>Data Collection</p>
-  </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 justify-content" >
-      <h3>Overall Camera View</h3>
-      <div class="embed-responsive embed-responsive-16by9">
-        <!-- webcam video streaming -->
-        <div class="">
-	  <img src="{{ url_for('video_feed') }}">
-          <!-- <canvas id="canvas" width="640" height="480"></canvas> -->
-        </div>
-      </div>
+   <div>
+   <h3>Overall Camera View</h3>
+	<img src="{{ url_for('video_feed') }}">
+   </div>
 
-    </div>
+   <div>
+      <h3>Notes</h3>
+      <textarea class="" rows="25" cols="25" name="notes"> </textarea>
+   </div>
 
-    <div class="col-sm-6">
-      <h3>Local Camera View</h3>
-      <div class="embed-responsive embed-responsive-16by9">
-        <!-- webcam video streaming -->
-        <div class="">
-          <!-- <video id="video"  width="640" height="480" autoplay></video> -->
-          <canvas id="canvas" width="640" height="480"></canvas>
-        </div>
-      </div>
-            <div class="form-group">
-        <label for="comment">Type your thoughts and observational notes:</label>
-        <textarea class="form-control" rows="25" id="comment"></textarea>
-      </div>
+    <div>
+      <h3>Labels</h3>
+      <button type="button" class="trail_action_btn" onClick="record_trail_action(this)">Label 1</button>
+      <button type="button" class="trail_action_btn" onClick="record_trail_action(this)">Label 2</button>
+      <button type="button" class="trail_action_btn" onClick="record_trail_action(this)">Label 3</button>
+    </div> 
+    <br>
+    <div>
+        <button type="button" class="">Save</button>
     </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <hr>
-      <h3>Labeling</h3>
-      <button type="button" class="trail_action_btn btn" onClick="record_trail_action(this)">Label 1</button>
-      <button type="button" class="trail_action_btn btn" onClick="record_trail_action(this)">Label 2</button>
-      <button type="button" class="trail_action_btn btn" onClick="record_trail_action(this)">Label 3</button>
-      <!-- Trigger the modal with a button -->
-      <a type="button" class="" data-toggle="modal" data-target="#addLabelsModal">+ Add More</a>
-    </div>
-    <div class="row">
-      <br>
-      <a type="button" class="btn btn-primary btn-block" href="">Save</a>
-    </div>
-  </div>
-  <!-- Modal -->
-<div class="modal fade" id="addLabelsModal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add More Labels</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal" action="record.html">
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="label">Label:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="label" placeholder="">
-          </div>
-        </div>
-      </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
-      </div>
-    </div>
-    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/video.js')}}"></script>
-
   </body>
 </html>
