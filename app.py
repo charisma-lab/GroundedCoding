@@ -18,9 +18,9 @@ def trail_show():
 
     return render_template('trail.html', rows=result)
 
-@webapp.route('/trail-action/record', methods=['GET'])
+@webapp.route('/trail-action/record/<action>', methods=['GET'])
 #records a trail action
-def trail_action_record():
+def trail_action_record(action):
     print("Recording an action on the trail")
     query = """
     INSERT INTO trail_action_log
@@ -28,7 +28,7 @@ def trail_action_record():
     VALUES
     (%s, %s, %s)
     """
-    data = (3.42, 2, "Test")
+    data = (3.42, 2, action)
     execute_query(db_connection, query, data)
     return("Action recorded");
 

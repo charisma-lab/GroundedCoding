@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
 
   </head>
   <body>
@@ -38,15 +39,10 @@
           <canvas id="canvas" width="640" height="480"></canvas>
         </div>
       </div>
-
-
             <div class="form-group">
         <label for="comment">Type your thoughts and observational notes:</label>
         <textarea class="form-control" rows="25" id="comment"></textarea>
       </div>
-
-
-      
     </div>
     </div>
   </div>
@@ -54,9 +50,9 @@
     <div class="row">
       <hr>
       <h3>Labeling</h3>
-      <button type="button" class="btn">Label 1</button>
-      <button type="button" class="btn">Label 2</button>
-      <button type="button" class="btn">Label 3</button>
+      <button type="button" class="trail_action_btn btn" onClick="record_trail_action(this)">Label 1</button>
+      <button type="button" class="trail_action_btn btn">Label 2</button>
+      <button type="button" class="trail_action_btn btn">Label 3</button>
       <!-- Trigger the modal with a button -->
       <a type="button" class="" data-toggle="modal" data-target="#addLabelsModal">+ Add More</a>
     </div>
@@ -89,10 +85,9 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
       </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/video.js"></script>
-
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/video.js')}}"></script>
 
   </body>
 </html>
