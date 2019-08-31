@@ -65,9 +65,13 @@ def index():
 
 @webapp.route('/trail/start')
 def start_trail():
-    #TODO: Make this dynamic using utcnow()
     session['start_time'] = time.time()
+    #Record this action of starting the trail!
+    trail_action_record('Starting the trail')
     return str(session['start_time'])
 
+#this will save the trail
+def save_trail():
+    pass
 if __name__ == '__main__':
     webapp.run(host='0.0.0.0', debug=False)
