@@ -68,10 +68,30 @@ def start_trail():
     session['start_time'] = time.time()
     #Record this action of starting the trail!
     trail_action_record('Starting the trail')
+    #TODO: Create a record for this trail in traildb
+
     return str(session['start_time'])
 
 #this will save the trail
-def save_trail():
+@webapp.route('/trail/stop', methods=['POST'])
+def stop_trail():
+    #TODO: Stop video recording and save the video!
+    #do the magic somehow!
     pass
+
+    #TODO: remove this!
+    session['trail_id'] = 1;
+
+    #save the notes to the database for this specific trail
+    print("Saving the notes for this trail by updating this trail's record")
+    query = """
+        UPDATE trail
+        SET trail_notes = %s
+        WHERE trail_id = %s
+        """
+    data = (request.form['notes'], session['trail_id']);
+    execute_query(db_connection, query, data)
+    return("Trail Stopped!")
+
 if __name__ == '__main__':
     webapp.run(host='0.0.0.0', debug=False)
