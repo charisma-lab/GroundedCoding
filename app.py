@@ -65,12 +65,28 @@ def index():
 
 @webapp.route('/trail/start')
 def start_trail():
-    session['start_time'] = time.time()
+    session['trail_start_time'] = time.time()
     #Record this action of starting the trail!
     trail_action_record('Starting the trail')
-    #TODO: Create a record for this trail in traildb
+    #TODO: Get data about this trail from the form!
+    recorder_name = "Samar"
+    trail_number = "42"
 
-    return str(session['start_time'])
+    #Create a record for this trail in traildb
+    print("Saving the notes for this trail by updating this trail's record")
+    query = """
+        INSERT INTO trail
+        (recorder_name, trail_number, started_on)
+        VALUES
+        (%s, %s, %s)
+        """
+    #TODO: FIXIT: now() doesn't actually insert the now time in the database for some reason
+    data = (recorder_name, trail_number, "now()");
+    trail_id = execute_query(db_connection, query, data, send_last_inserted_id=True)
+    #TODO: Get the last inserted id and put it as teh trail id in the sesion data
+    session['trail_id'] = trail_id
+    print ("Trail started with the id %s and on time %s"  % (session['trail_id'], session['trail_start_time']));
+    return str(session['trail_start_time'])
 
 #this will save the trail
 @webapp.route('/trail/stop', methods=['POST'])
@@ -86,11 +102,14 @@ def stop_trail():
     print("Saving the notes for this trail by updating this trail's record")
     query = """
         UPDATE trail
-        SET trail_notes = %s
+        SET trail_notes = %s,
+        stopped_on = %s
         WHERE trail_id = %s
         """
-    data = (request.form['notes'], session['trail_id']);
+    data = (request.form['notes'], 'now()', session['trail_id']);
     execute_query(db_connection, query, data)
+    #Create an entry in the trail log about this stop action
+    trail_action_record("Stopping the trail")
     return("Trail Stopped!")
 
 if __name__ == '__main__':

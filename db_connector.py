@@ -8,15 +8,17 @@ def connect_to_database(host = host, user = user, passwd = passwd, db = db):
     db_connection = mariadb.connect(host,user,passwd,db)
     return db_connection
 
-def execute_query(db_connection = None, query = None, query_params = ()):
+def execute_query(db_connection = None, query = None, query_params = (), send_last_inserted_id=False):
     '''
     executes a given SQL query on the given db connection and returns a Cursor object
 
     db_connection: a MySQLdb connection object created by connect_to_database()
     query: string containing SQL query
+    send_last_inserted_id: A boolean indicating whether to return the last inserted id
 
     returns: A Cursor object as specified at https://www.python.org/dev/peps/pep-0249/#cursor-objects.
     You need to run .fetchall() or .fetchone() on that object to actually acccess the results.
+    OR if send_last_inserted_id is True, it will return the Primary key id of the row last inserted
 
     '''
 
@@ -43,7 +45,10 @@ def execute_query(db_connection = None, query = None, query_params = ()):
     # this will actually commit any changes to the database. without this no
     # changes will be committed!
     db_connection.commit();
-    return cursor
+    if send_last_inserted_id:
+        return cursor.lastrowid
+    else:
+        return cursor
 
 if __name__ == '__main__':
     print("Executing a sample query on the database using the credentials from db_credentials.py")
