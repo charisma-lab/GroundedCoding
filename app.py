@@ -2,6 +2,7 @@ from flask import Flask, render_template, Response, session, escape, request
 from db_connector import *
 from importlib import import_module
 import os
+import time
 
 webapp = Flask(__name__)
 db_connection = connect_to_database()
@@ -34,13 +35,13 @@ def trail_action_record(action):
     print("Recording an action on the trail")
     query = """
     INSERT INTO trail_action_log
-    (time_in_trail, trail_id, action)
+    (trail_id, time_in_trail, action)
     VALUES
     (%s, %s, %s)
     """
     #TODO: calculate the timestamp
-    timestamp = session['start_time']
-    data = (timestamp, 2, action)
+    timestamp = time.time() - float(session['start_time'])
+    data = (2, timestamp, action)
     execute_query(db_connection, query, data)
     return("Action recorded");
 
@@ -65,8 +66,8 @@ def index():
 @webapp.route('/trail/start')
 def start_trail():
     #TODO: Make this dynamic using utcnow()
-    session['start_time'] = '12342';
-    return session['start_time']
+    session['start_time'] = time.time()
+    return str(session['start_time'])
 
 if __name__ == '__main__':
     webapp.run(host='0.0.0.0', debug=False)
