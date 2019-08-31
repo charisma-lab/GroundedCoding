@@ -40,7 +40,7 @@ def trail_action_record(action):
     (%s, %s, %s)
     """
     #TODO: calculate the timestamp
-    timestamp = time.time() - float(session['start_time'])
+    timestamp = time.time() - float(session['trail_start_time'])
     data = (2, timestamp, action)
     execute_query(db_connection, query, data)
     return("Action recorded");
