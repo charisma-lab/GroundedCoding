@@ -116,6 +116,10 @@ def stop_trail():
     execute_query(db_connection, query, data)
     #Create an entry in the trail log about this stop action
     trail_action_record("Stopping the trail")
+
+    #Delete the session data!
+    session.pop('trail_id', None)
+    session.pop('trail_start_time', None)
     return("Trail Stopped!")
 
 if __name__ == '__main__':
