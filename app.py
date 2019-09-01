@@ -1,4 +1,5 @@
 from flask import Flask, render_template, Response, session, escape, request
+from flask_api import status
 from db_connector import *
 from importlib import import_module
 import os
@@ -32,6 +33,13 @@ def trail_show():
 @webapp.route('/trail-action/record/<action>', methods=['GET'])
 #records a trail action
 def trail_action_record(action):
+    #Don't record an action if the trail hasn't started!
+    #TODO: Make this error actually appear as error the Jquery Ajax requester in groundedCoding.js
+    if not 'trail_id' in session or session['trail_id'] is None:
+       error = "You need to start the trail before you can record an action!"
+       print(error)
+       return error, status.HTTP_500_INTERNAL_SERVER_ERROR
+
     print("Recording an action on the trail")
     query = """
     INSERT INTO trail_action_log

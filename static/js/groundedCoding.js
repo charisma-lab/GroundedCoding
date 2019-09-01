@@ -3,12 +3,16 @@ function record_trail_action(action) {
 			url: '/trail-action/record/' + encodeURI(action.innerHTML),
 			type: 'GET',
 			data: null,
-			success: function(result){
+			done: function(result){
 				alert("Action recorded! \nServer says:" + result);
 			},
+      /*TODO: FIX THIS! It does not work even for HTTP 500*/
 			fail: function(result){
 				alert("Failed to record action! \nError:" + result);
-				}
+				},
+      always: function(result){
+        alert("Server said: " + result);
+        }
 			})
 };
 
