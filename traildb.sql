@@ -26,20 +26,12 @@ CREATE TABLE `trail` (
   `trail_id` int(8) NOT NULL AUTO_INCREMENT,
   `recorder_name` varchar(20) NOT NULL,
   `trail_number` int(8) NOT NULL,
-  `started_recording_on` datetime NOT NULL,
+  `started_on` datetime NOT NULL,
   `trail_notes` longtext,
+  `stopped_on` datetime DEFAULT NULL,
   PRIMARY KEY (`trail_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `trail`
---
-
-LOCK TABLES `trail` WRITE;
-/*!40000 ALTER TABLE `trail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `trail` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `trail_action_log`
@@ -50,21 +42,12 @@ DROP TABLE IF EXISTS `trail_action_log`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `trail_action_log` (
   `logid` int(8) NOT NULL AUTO_INCREMENT,
-  `time_in_trail` decimal(5,2) NOT NULL,
   `trail_id` int(8) NOT NULL,
+  `time_in_trail` decimal(10,2) NOT NULL,
   `action` varchar(255) NOT NULL,
   PRIMARY KEY (`logid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `trail_action_log`
---
-
-LOCK TABLES `trail_action_log` WRITE;
-/*!40000 ALTER TABLE `trail_action_log` DISABLE KEYS */;
-/*!40000 ALTER TABLE `trail_action_log` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -75,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-30 15:35:41
+-- Dump completed on 2019-08-31 17:21:38

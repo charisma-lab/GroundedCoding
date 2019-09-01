@@ -14,7 +14,7 @@ def execute_query(db_connection = None, query = None, query_params = (), send_la
 
     db_connection: a MySQLdb connection object created by connect_to_database()
     query: string containing SQL query
-    send_last_inserted_id: A boolean indicating whether to return the last inserted id
+    send_last_inserted_id: A boolean indicating whether to return the last inserted id 
 
     returns: A Cursor object as specified at https://www.python.org/dev/peps/pep-0249/#cursor-objects.
     You need to run .fetchall() or .fetchone() on that object to actually acccess the results.
