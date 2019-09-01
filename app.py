@@ -49,7 +49,7 @@ def trail_action_record(action):
     """
     #TODO: calculate the timestamp
     timestamp = time.time() - float(session['trail_start_time'])
-    data = (2, timestamp, action)
+    data = (session['trail_id'], timestamp, action)
     execute_query(db_connection, query, data)
     return("Action recorded");
 
@@ -74,8 +74,6 @@ def index():
 @webapp.route('/trail/start')
 def start_trail():
     session['trail_start_time'] = time.time()
-    #Record this action of starting the trail!
-    trail_action_record('Starting the trail')
     #TODO: Get data about this trail from the form!
     recorder_name = "Samar"
     trail_number = "42"
@@ -93,6 +91,9 @@ def start_trail():
     trail_id = execute_query(db_connection, query, data, send_last_inserted_id=True)
     #TODO: Get the last inserted id and put it as teh trail id in the sesion data
     session['trail_id'] = trail_id
+
+    #Record this action of starting the trail!
+    trail_action_record('Starting the trail')
     print ("Trail started with the id %s and on time %s"  % (session['trail_id'], session['trail_start_time']));
     return str(session['trail_start_time'])
 
@@ -102,9 +103,6 @@ def stop_trail():
     #TODO: Stop video recording and save the video!
     #do the magic somehow!
     pass
-
-    #TODO: remove this!
-    session['trail_id'] = 1;
 
     #save the notes to the database for this specific trail
     print("Saving the notes for this trail by updating this trail's record")
