@@ -73,7 +73,7 @@ def index():
 
 @webapp.route('/trail/start')
 def start_trail():
-    session['trail_start_time'] = time.time()
+    session['trail_start_time'] = time.time() #Time in UTC!
     #TODO: Get data about this trail from the form!
     recorder_name = "Samar"
     trail_number = "42"
@@ -87,7 +87,7 @@ def start_trail():
         (%s, %s, %s)
         """
     #TODO: FIXIT: now() doesn't actually insert the now time in the database for some reason
-    data = (recorder_name, trail_number, "now()");
+    data = (recorder_name, trail_number, time.strftime('%Y-%m-%d %H:%M:%S'));
     trail_id = execute_query(db_connection, query, data, send_last_inserted_id=True)
     #TODO: Get the last inserted id and put it as teh trail id in the sesion data
     session['trail_id'] = trail_id
@@ -112,7 +112,7 @@ def stop_trail():
         stopped_on = %s
         WHERE trail_id = %s
         """
-    data = (request.form['notes'], 'now()', session['trail_id']);
+    data = (request.form['notes'], time.strftime('%Y-%m-%d %H:%M:%S'), session['trail_id']);
     execute_query(db_connection, query, data)
     #Create an entry in the trail log about this stop action
     trail_action_record("Stopping the trail")
