@@ -9,12 +9,21 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mediarecorder.css')}}">
+
   </head>
   <body>
 
    <div>
    <h3>Overall Camera View</h3>
-	<img src="{{ url_for('video_feed') }}">
+    <video id="gum" autoplay muted playsinline></video>
+    <video id="recorded" autoplay loop playsinline></video>
+
+    <div>
+      <button id="record">Start Recording</button>
+      <button id="play" disabled>Play</button>
+      <button id="download" disabled>Download</button>
+    </div>
    </div>
 
    <div>
@@ -34,5 +43,7 @@
     <div>
         <button type="button" class="" onClick="stop_trail()">Save Note &nbsp; Video Recording</button>
     </div>
+    <!-- uses the mediarecorder from https://github.com/samdutton/simpl/tree/gh-pages/mediarecorder -->
+    <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>
   </body>
 </html>
