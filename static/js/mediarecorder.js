@@ -69,7 +69,7 @@ function errorCallback(error) {
 
 function handleSourceOpen(event) {
   console.log('MediaSource opened');
-  sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+  sourceBuffer = mediaSource.addSourceBuffer('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
   console.log('Source buffer: ', sourceBuffer);
 }
 
@@ -96,7 +96,8 @@ function toggleRecording() {
 
 // The nested try blocks will be simplified when Chrome 47 moves to Stable
 function startRecording() {
-  var options = {mimeType: 'video/webm;codecs=vp9', bitsPerSecond: 100000};
+
+  var options = {mimeType: 'video/mp4;codecs=avc1.42E01E, mp4a.40.2', bitsPerSecond: 100000};
   recordedBlobs = [];
   try {
     mediaRecorder = new MediaRecorder(window.stream, options);
@@ -134,7 +135,7 @@ function stopRecording() {
 }
 
 function play() {
-  var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+  var superBuffer = new Blob(recordedBlobs, {type: 'video/mp4'});
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
 }
 
@@ -144,7 +145,7 @@ function downloadVideo() {
   var a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  a.download = 'test.webm';
+  a.download = 'test.mp4';
   document.body.appendChild(a);
   a.click();
   setTimeout(function() {
