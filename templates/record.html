@@ -14,14 +14,18 @@
   </head>
   <body>
 
-   <div>
+   <div id='camera_view'>
    <h3>Overall Camera View</h3>
+    
     <video id="gum" autoplay muted playsinline></video>
     <video id="recorded" autoplay loop playsinline></video>
+    <img id='snapshot' src="">
+    <canvas style="display:none;"></canvas>
 
     <div>
       <button id="record">Start Recording</button>
       <button id="play" disabled>Play</button>
+      <button id='snapshot-button' onClick='take_snapshot()'>Take Snapshot</button>
       <!-- hide this button until we figure out how to completely disassociate
         it -->
       <button style="display: none;" id="download" disabled>Download</button>

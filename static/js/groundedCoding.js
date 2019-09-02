@@ -35,3 +35,22 @@ function stop_trail() {
     //Offer the video recording for download
     downloadVideo()
 };
+
+function take_snapshot() {
+  var screenshotButton = document.querySelector('#snapshot-button');
+  var img = document.querySelector('#snapshot');
+  var video = document.querySelector('#gum');
+
+  var canvas = document.createElement('canvas');
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  // Other browsers will fall back to image/png
+  img.src = canvas.toDataURL('image/png');
+
+  function handleSuccess(stream) {
+    screenshotButton.disabled = false;
+    video.srcObject = stream;
+  }
+};
