@@ -36,7 +36,7 @@ function stop_trail() {
     downloadVideo()
 };
 
-function take_snapshot() {
+function save_snapshot() {
   var screenshotButton = document.querySelector('#snapshot-button');
   var img = document.querySelector('#snapshot');
   var video = document.querySelector('#gum');
@@ -49,8 +49,16 @@ function take_snapshot() {
   // Other browsers will fall back to image/png
   img.src = canvas.toDataURL('image/png');
 
-  function handleSuccess(stream) {
-    screenshotButton.disabled = false;
-    video.srcObject = stream;
-  }
+  var a = document.createElement('a');
+  a.style.display = 'none';
+  /* TODO: Make this dynamically named based on date and time and trail number */
+  a.download = 'screenshot.png';
+  a.href = canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 100);
+
 };
