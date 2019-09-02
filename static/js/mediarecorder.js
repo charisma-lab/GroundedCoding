@@ -33,7 +33,7 @@ var playButton = document.querySelector('button#play');
 var downloadButton = document.querySelector('button#download');
 recordButton.onclick = toggleRecording;
 playButton.onclick = play;
-downloadButton.onclick = download;
+downloadButton.onclick = downloadVideo;
 
 console.log(location.host);
 // window.isSecureContext could be used for Chrome
@@ -138,8 +138,8 @@ function play() {
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
 }
 
-function download() {
-  var blob = new Blob(recordedBlobs, {type: 'video/webm'});
+function downloadVideo() {
+  var blob = new Blob(recordedBlobs, {type: 'video/mp4'});
   var url = window.URL.createObjectURL(blob);
   var a = document.createElement('a');
   a.style.display = 'none';

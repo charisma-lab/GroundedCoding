@@ -22,7 +22,9 @@
     <div>
       <button id="record">Start Recording</button>
       <button id="play" disabled>Play</button>
-      <button id="download" disabled>Download</button>
+      <!-- hide this button until we figure out how to completely disassociate
+        it -->
+      <button style="display: none;" id="download" disabled>Download</button>
     </div>
    </div>
 
@@ -41,7 +43,8 @@
     </div> 
     <br>
     <div>
-        <button type="button" class="" onClick="stop_trail()">Save Note &nbsp; Video Recording</button>
+        <button type="button" class="" onClick="stop_trail()">Save Note &
+          Download Video Recording</button>
     </div>
     <!-- uses the mediarecorder from https://github.com/samdutton/simpl/tree/gh-pages/mediarecorder -->
     <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>

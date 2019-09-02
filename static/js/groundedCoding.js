@@ -18,6 +18,9 @@ function record_trail_action(action) {
 
 /* Stops the trail by stopping the video recording and saving the notes */
 function stop_trail() {
+    //Stop the video recording in the browser
+    toggleRecording();
+    //Notify the backend of the end of trail
 		$.ajax({
 			url: '/trail/stop',
 			type: 'POST',
@@ -29,4 +32,6 @@ function stop_trail() {
 				alert("Failed to stop trail! \nError:" + result);
 				}
 			})
+    //Offer the video recording for download
+    downloadVideo()
 };
