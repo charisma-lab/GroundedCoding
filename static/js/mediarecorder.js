@@ -31,9 +31,9 @@ var recordedVideo = document.querySelector('video#recorded');
 var recordButton = document.querySelector('button#record');
 var playButton = document.querySelector('button#play');
 var downloadButton = document.querySelector('button#download');
-recordButton.onclick = toggleRecording;
-playButton.onclick = play;
-downloadButton.onclick = downloadVideo;
+// recordButton.onclick = toggleRecording;
+// playButton.onclick = play;
+// downloadButton.onclick = downloadVideo;
 
 console.log(location.host);
 // window.isSecureContext could be used for Chrome

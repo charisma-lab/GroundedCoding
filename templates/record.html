@@ -1,56 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style type="text/css">
+      .button1 {width: 100% }
+      .zero-margin { margin: 0 !important; padding: 0;}
+ /*     table, tr, td{
+      	border: 1px solid red;
+      }
+      div{
+      	border: 1px solid blue;
+      }*/
+    </style>
     <meta charset="UTF-8">
     <title>Data Collection</title>
-    <!-- Bootstrap-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
     <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/mediarecorder.css')}}">
-
   </head>
   <body>
 
-   <div id='camera_view'> 
-   <h3>Overall Camera View</h3>
-    
-    <video id="gum" autoplay muted playsinline></video>
-    <video id="recorded" autoplay loop playsinline></video>
-    <img id='snapshot' src="">
-    <canvas style="display:none;"></canvas>
-    
-    <div>
+	<table>
+
+    <div id='Session Information'>
+    <h3>Session Information</h3>
+
+    <tr>
+    	<td>
+    		<textarea class="" rows="1" cols="110" name="username"></textarea>
+    	</td>
+    	<td>
+    		<textarea class="" rows="1" cols="100" name="trialnumber"></textarea>
+    	</td>
+    	<td>
+		    <button id="session-button">Start Session</button>
+		</td>
+    </tr>
+    </div>
+    <tr>
+      <td>
+      	<div>
+	      	<h3>Overall Camera View</h3>
+          <table>
+            <tr>
+              <td>
+                <video id="gum" autoplay muted playsinline width=100% height="300"></video>
+              </td>
+              <td>
+                <img id='snapshot' width=100% height="300">
+              </td>
+            </tr>
+          </table>
+          <!-- <canvas style="display:none;"></canvas> -->
+	      	<!-- <img src="batman.jpeg" width=100% height="300"> -->
+		  	<p align="right"><button id='snapshot-button' onClick='save_snapshot()'>Save Snapshot</button></p>
+<!-- 
+      <div>
       <button id="record">Start Recording</button>
       <button id="play" disabled>Play</button>
-      <button id='snapshot-button' onClick='save_snapshot()'>Save Snapshot</button>
+      <button id='snapshot-button' onClick='save_snapshot()'>Save Snapshot</button> -->
       <!-- hide this button until we figure out how to completely disassociate
         it -->
-      <button style="display: none;" id="download" disabled>Download</button>
-    </div>
-   </div>
+      <!-- <button style="display: none;" id="download" disabled>Download</button>
+    </div> -->
 
-   <div>
-      <form id="trail-data" name='trail-data' action='' method=''>
-      <h3>Notes</h3>
-      <textarea class="" rows="25" cols="25" name="notes"></textarea>
-      </form>
-   </div>
+		  	<hr>
+		  	<h3>Labels</h3>
+		      <button type="button" >Label 1</button>
+		      <button type="button" >Label 2</button>
+		      <button type="button" >Label 3</button>
+		      <a href="url">+ Add More</a>
+		 </div>
+	  </td>
+      <td colspan=2>
+      	<div>
+      		<h3>Notes</h3>
+      		<textarea class="" rows="33" cols="110" name="notes"></textarea>
+      	</div>
+	  </td>
+	</tr>
+	  <tr>
+	  	<td colspan=3>
+	  		<button type="button" class="button button1" onClick="stop_trail()" >Save Note & Download video recording</button>
+	  	</td>
+	  </tr>
+    </table>
 
-    <div>
-      <h3>Labels</h3>
-      <button type="button" class="trail_action_btn" onClick="record_trail_action(this)">Label 1</button>
-      <button type="button" class="trail_action_btn" onClick="record_trail_action(this)">Label 2</button>
-      <button type="button" class="trail_action_btn" onClick="record_trail_action(this)">Label 3</button>
-    </div> 
-    <br>
-    <div>
-        <button type="button" class="" onClick="stop_trail()">Save Note &
-          Download Video Recording</button>
-    </div>
-    <!-- uses the mediarecorder from https://github.com/samdutton/simpl/tree/gh-pages/mediarecorder -->
-    <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>
+      <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>
+
   </body>
 </html>
