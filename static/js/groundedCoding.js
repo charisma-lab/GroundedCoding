@@ -36,6 +36,28 @@ function stop_trail() {
     downloadVideo()
 };
 
+
+function start_trail() {
+    //Stop the video recording in the browser
+   // toggleRecording();
+    //Notify the backend of the end of trail
+    alert("start_trail")
+    $.ajax({
+      url: '/trail/start',
+      type: 'POST',
+      data: $('#start_session').serialize(),
+      success: function(result){
+        alert("Trail started! \nServer says:" + result);
+      },
+      fail: function(result){
+        alert("Failed to strat trail! \nError:" + result);
+        }
+      })
+    //Offer the video recording for download
+    //downloadVideo()
+};
+
+
 function save_snapshot() {
   var screenshotButton = document.querySelector('#snapshot-button');
   var img = document.querySelector('#snapshot');

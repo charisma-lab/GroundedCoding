@@ -47,12 +47,16 @@ def trail_action_record(action):
     execute_query(db_connection, query, data)
     return("Action recorded");
 
-@webapp.route('/trail/start')
+@webapp.route('/trail/start', methods=['POST'])
 def start_trail():
+    print("Hi");
     session['trail_start_time'] = time.time() #Time in UTC!
     #TODO: Get data about this trail from the form!
-    recorder_name = "Samar"
-    trail_number = "42"
+    recorder_name = request.form['username']
+    trail_number = request.form['trialnumber']
+
+    print(recorder_name);
+    print(trail_number);
 
     #Create a record for this trail in traildb
     print("Saving the notes for this trail by updating this trail's record")
