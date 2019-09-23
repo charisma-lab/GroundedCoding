@@ -16,14 +16,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
-    //     $(document).ready(function(){
-    //     $("button").click(function(){
-    //         $("ol").append("<button>list item</button>"); 
-    //     });
-    // });
+    	 $(document).ready(function(){
+   	     $("#addlable").click(function(){
+             $("ol").append("<button>list item</button>"); 
+         });
+     });
     </script>
+<!--     <script>
+    	function startfun() {
+    		var x = document.getElementById ('username').text;
+    		document.getElementById("usernameinput").innerHTML = x;
+    	}
+    </script> -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/mediarecorder.css')}}">
   </head>
   <body>
@@ -36,12 +42,14 @@
       <tr>
     	 <td>
     	   	<input type="text" name="username" ></input>
+
     	 </td>
     	 <td>
     	   	<input type="text" name="trialnumber"></input>
+
     	 </td>
     	 <td>
-		     <button id="session-button" onclick='start_trail()'>Start Session</button>
+		     <button id="session-button" onclick="startfun()">Start Session</button>
 		  </td>
       </tr>
    </form>
@@ -76,11 +84,11 @@
 		  	<hr>
 		  	<h3>Labels</h3>
         <ol>
-		      <button type="button" >Label 1</button>
+		     <button type="button" >Label 1</button> 
 		      <button type="button" >Label 2</button>
 		      <button type="button" >Label 3</button>
         </ol>
-		      <a href="url">+ Add More</a>
+		      <a id="addlable" style="text-decoration: underline; color: blue">+ Add More</a>
 		 </div>
 	  </td>
       <td colspan=2>
