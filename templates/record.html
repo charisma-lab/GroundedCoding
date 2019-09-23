@@ -16,7 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/mediarecorder.css')}}">
   </head>
   <body>
 
@@ -44,7 +43,7 @@
           <table>
             <tr>
               <td>
-                <video id="gum" autoplay muted playsinline width=100% height="300"></video>
+                <img src="{{ url_for('video_feed') }}">
               </td>
               <td>
                 <img id='snapshot' width=100% height="300">
@@ -85,8 +84,5 @@
 	  	</td>
 	  </tr>
     </table>
-
-      <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>
-
   </body>
 </html>
