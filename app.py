@@ -115,4 +115,4 @@ def video_feed():
 
 
 if __name__ == '__main__':
-    webapp.run(host='0.0.0.0', ssl_context='adhoc', debug=False)
+    webapp.run(host='0.0.0.0', threaded=True, debug=False)
