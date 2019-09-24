@@ -2,3 +2,5 @@ venv/*
 *.pyc
 db_credentials.py
 .DS_Store
+.DS_Store
+static/.DS_Store
