@@ -16,21 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    	 $(document).ready(function(){
-   	     $("#addlable").click(function(){
-             $("ol").append("<button>list item</button>"); 
-         });
+<script type="text/javascript">
+   $(document).ready(function(){
+     $("#addlable").click(function(){
+         $("ol").append("<button>list item</button>");
      });
-    </script>
-<!--     <script>
-    	function startfun() {
-    		var x = document.getElementById ('username').text;
-    		document.getElementById("usernameinput").innerHTML = x;
-    	}
-    </script> -->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/mediarecorder.css')}}">
+ });
+</script>
   </head>
   <body>
 
@@ -61,34 +53,20 @@
           <table>
             <tr>
               <td>
-                <video id="gum" autoplay muted playsinline width=100% height="300"></video>
+                <img src="{{ url_for('video_feed') }}">
               </td>
               <td>
-                <img id='snapshot' width=100% height="300">
               </td>
             </tr>
           </table>
-          <!-- <canvas style="display:none;"></canvas> -->
-	      	<!-- <img src="batman.jpeg" width=100% height="300"> -->
-		  	<p align="right"><button id='snapshot-button' onClick='save_snapshot()'>Save Snapshot</button></p>
-<!-- 
-      <div>
-      <button id="record">Start Recording</button>
-      <button id="play" disabled>Play</button>
-      <button id='snapshot-button' onClick='save_snapshot()'>Save Snapshot</button> -->
-      <!-- hide this button until we figure out how to completely disassociate
-        it -->
-      <!-- <button style="display: none;" id="download" disabled>Download</button>
-    </div> -->
-
 		  	<hr>
 		  	<h3>Labels</h3>
         <ol>
-		     <button type="button" >Label 1</button> 
+		     <button type="button" >Label 1</button>
 		      <button type="button" >Label 2</button>
 		      <button type="button" >Label 3</button>
         </ol>
-		      <a id="addlable" style="text-decoration: underline; color: blue">+ Add More</a>
+		      <a href=""id="addlable" style="text-decoration: underline; color: blue">+ Add More</a>
 		 </div>
 	  </td>
       <td colspan=2>
@@ -104,8 +82,5 @@
 	  	</td>
 	  </tr>
     </table>
-
-      <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>
-
   </body>
 </html>
