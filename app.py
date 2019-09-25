@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response, session, escape, request
+from flask import Flask, render_template, Response, session, escape, request, url_for
 from flask_api import status
 from db_connector import *
 from importlib import import_module
@@ -61,7 +61,7 @@ def start_trail():
     print(trail_number);
 
     #Create a record for this trail in traildb
-    print("Saving the notes for this trail by updating this trail's record")
+    print("Starting this trail by creating a record for this trail's record and initiating session")
     query = """
         INSERT INTO trail
         (recorder_name, trail_number, started_on)

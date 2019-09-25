@@ -26,11 +26,11 @@
   </head>
   <body>
 
+  <div id='Session Information'>
+  <form id="start_session">
 	<table>
 
-    <div id='Session Information'>
     <h3>Session Information</h3>
-    <form id="start_session">
       <tr>
     	 <td>
     	   	<input type="text" name="username" ></input>
@@ -41,12 +41,11 @@
 
     	 </td>
     	 <td>
-		     <button id="session-button" onclick="startfun()">Start Session</button>
+		     <button type='button' id="session-button" onClick="start_trail()">Start Session</button>
 		  </td>
       </tr>
    </form>
-    </div>
-    <tr>
+   <tr>
       <td>
       	<div>
 	      	<h3>Overall Camera View</h3>
@@ -71,8 +70,10 @@
 	  </td>
       <td colspan=2>
       	<div>
-      		<h3>Notes</h3>
-      		<textarea class="" rows="33" cols="110" name="notes"></textarea>
+          <form id='trail-data' name='trail-data'>
+         		<h3>Notes</h3>
+        		<textarea class="" rows="33" cols="110" name="notes"></textarea>
+          </form>
       	</div>
 	  </td>
 	</tr>
@@ -82,5 +83,6 @@
 	  	</td>
 	  </tr>
     </table>
-  </body>
+    </div>
+   </body>
 </html>

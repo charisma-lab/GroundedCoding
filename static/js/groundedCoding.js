@@ -38,9 +38,7 @@ function stop_trail() {
 
 
 function start_trail() {
-    //Stop the video recording in the browser
-   // toggleRecording();
-    //Notify the backend of the end of trail
+    //Notify the backend of the start of trail
     alert("start_trail")
     $.ajax({
       url: '/trail/start',
@@ -53,8 +51,6 @@ function start_trail() {
         alert("Failed to strat trail! \nError:" + result);
         }
       })
-    //Offer the video recording for download
-    //downloadVideo()
 };
 
 
