@@ -69,7 +69,7 @@ function save_snapshot() {
   canvas.height = video.videoHeight;
   canvas.getContext('2d').drawImage(video, 0, 0);
   // Other browsers will fall back to image/png
-  img.src = canvas.toDataURL('image/png');
+  //img.src = canvas.toDataURL('image/png');
 
   var a = document.createElement('a');
   a.style.display = 'none';
