@@ -4,12 +4,12 @@
     <style type="text/css">
       .button1 {width: 100% }
       .zero-margin { margin: 0 !important; padding: 0;}
- /*     table, tr, td{
+     /* table, tr, td{
       	border: 1px solid red;
       }
       div{
       	border: 1px solid blue;
-      }*/
+      } */
     </style>
     <meta charset="UTF-8">
     <title>Data Collection</title>
@@ -17,11 +17,15 @@
     <script src="{{url_for('static', filename='js/groundedCoding.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
 <script type="text/javascript">
-   $(document).ready(function(){
-     $("#addlable").click(function(){
-         $("ol").append("<button>list item</button>");
-     });
- });
+function labeltext() {
+var labeltext = document.getElementById('Labelname_input').value;
+var node = document.createElement("ol");
+var buttonnode = document.createElement("button");
+  buttonnode.innerHTML = labeltext;
+  node.appendChild(buttonnode);
+
+document.getElementById("labelList").appendChild(node);
+}
 </script>
   </head>
   <body>
@@ -62,12 +66,13 @@
           </table>
 		  	<hr>
 		  	<h3>Labels</h3>
-        <ol>
+        <ol id="labelList">
 		     <button type="button" >Label 1</button>
 		      <button type="button" >Label 2</button>
 		      <button type="button" >Label 3</button>
         </ol>
-		      <a href=""id="addlable" style="text-decoration: underline; color: blue">+ Add More</a>
+        <input type="text" id="Labelname_input"></input>
+		      <a href="#"id="addlable" style="text-decoration: underline; color: blue" onclick="labeltext()">+ Add More</a>
 		 </div>
 	  </td>
       <td colspan=2>
