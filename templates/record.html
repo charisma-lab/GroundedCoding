@@ -16,21 +16,6 @@
 
    <div id='camera_view'> 
    <h3>Overall Camera View</h3>
-    
-    <video id="gum" autoplay muted playsinline></video>
-    <video id="recorded" autoplay loop playsinline></video>
-    <img id='snapshot' src="">
-    <canvas style="display:none;"></canvas>
-    
-    <div>
-      <button id="record">Start Recording</button>
-      <button id="play" disabled>Play</button>
-      <button id='snapshot-button' onClick='save_snapshot()'>Save Snapshot</button>
-      <!-- hide this button until we figure out how to completely disassociate
-        it -->
-      <button style="display: none;" id="download" disabled>Download</button>
-    </div>
-   </div>
 
    <div>
      <form id='trail-session-data' name='trail-session-data' action=''  method=''>
@@ -39,7 +24,23 @@
        <button type='button' class='start_trail' onClick="start_trail()">Start Session</button>
     </form>
    </div>
-   <div>
+     
+    <video id="gum" autoplay muted playsinline width=400 height=400></video>
+    <video id="recorded" autoplay loop playsinline style='display:none'></video>
+    <img id='snapshot' src="" width=400 height=400 />
+    <canvas style="display:none;" width=400 height=400></canvas>
+    
+    <div>
+      <button id="record" style='display:None'>Start Streaming</button>
+      <button id="play" disabled style='display:None'>Play</button> 
+      <button id='snapshot-button' onClick='save_snapshot()'>Save Screenshot</button>
+      <!-- hide this button until we figure out how to completely disassociate
+        it -->
+      <button style="display: none;" id="download" disabled>Download</button>
+    </div>
+   </div>
+
+  <div>
       <form id="trail-data" name='trail-data' action='' method=''>
       <h3>Notes</h3>
       <textarea id='comment' class="" rows="5" cols="5" name="comment"></textarea>
