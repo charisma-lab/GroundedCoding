@@ -1,6 +1,7 @@
 function record_trail_comment(comment)
 {
- 		$.ajax({
+    save_snapshot_with_comment(encodeURI(comment))
+    $.ajax({
 			url: '/trail-comment/record/' + encodeURI(comment),
 			type: 'GET',
 			data: null,
@@ -18,7 +19,9 @@ function record_trail_comment(comment)
 }
 
 function record_trail_action(action) {
-		$.ajax({
+
+  save_snapshot_with_button(encodeURI(action.innerHTML))
+  $.ajax({
 			url: '/trail-action/record/' + encodeURI(action.innerHTML),
 			type: 'GET',
 			data: null,
@@ -97,4 +100,62 @@ function save_snapshot() {
     window.URL.revokeObjectURL(url);
   }, 100);
 
+};
+
+function save_snapshot_with_comment(comment) {
+  var screenshotButton = document.querySelector('#snapshot-button');
+  var img = document.querySelector('#snapshot');
+  var video = document.querySelector('#gum');
+
+  var canvas = document.createElement('canvas');
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  // Other browsers will fall back to image/png
+  img.src = canvas.toDataURL('image/png');
+
+  var d = new Date();
+  var timestamp = d.toJSON();
+
+  var a = document.createElement('a');
+  a.style.display = 'none';
+  /* TODO: Make this dynamically named based on date and time and trail number */
+  a.download = timestamp + '_screenshot_with_comment_' + comment + '.png';
+  a.href = canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 100);
+};
+
+function save_snapshot_with_button(button) {
+  var screenshotButton = document.querySelector('#snapshot-button');
+  var img = document.querySelector('#snapshot');
+  var video = document.querySelector('#gum');
+
+  var canvas = document.createElement('canvas');
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  // Other browsers will fall back to image/png
+  img.src = canvas.toDataURL('image/png');
+
+  var d = new Date();
+  var timestamp = d.toJSON();
+
+  var a = document.createElement('a');
+  a.style.display = 'none';
+  /* TODO: Make this dynamically named based on date and time and trail number */
+  a.download = timestamp + '_screenshot_with_button_' + button + '.png';
+  a.href = canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 100);
 };
