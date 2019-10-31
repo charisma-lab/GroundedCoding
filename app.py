@@ -24,6 +24,30 @@ def trail_show():
 
     return render_template('trail.html', rows=result)
 
+@webapp.route('/trail-comment/record/<action>', methods=['GET'])
+#records a trail comment given by the user
+def trail_comment_record(action):
+    #Don't record a comment if the trail hasn't started!
+    #TODO: Make this error actually appear as error the Jquery Ajax requester in groundedCoding.js
+    if not 'trail_id' in session or session['trail_id'] is None:
+       error = "You need to start the trail before you can record a comment!"
+       print(error)
+       return error, status.HTTP_500_INTERNAL_SERVER_ERROR
+
+    print("Recording an action on the trail")
+    query = """
+    INSERT INTO trail_action_log
+    (trail_id, time_in_trail, action, type)
+    VALUES
+    (%s, %s, %s, 'comment')
+    """
+    #TODO: calculate the timestamp
+    timestamp = time.time() - float(session['trail_start_time'])
+    data = (session['trail_id'], timestamp, action)
+    execute_query(db_connection, query, data)
+    return("Action recorded");
+
+
 @webapp.route('/trail-action/record/<action>', methods=['GET'])
 #records a trail action
 def trail_action_record(action):
@@ -37,9 +61,9 @@ def trail_action_record(action):
     print("Recording an action on the trail")
     query = """
     INSERT INTO trail_action_log
-    (trail_id, time_in_trail, action)
+    (trail_id, time_in_trail, action, type)
     VALUES
-    (%s, %s, %s)
+    (%s, %s, %s, 'button')
     """
     #TODO: calculate the timestamp
     timestamp = time.time() - float(session['trail_start_time'])

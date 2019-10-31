@@ -1,7 +1,7 @@
 function record_trail_comment(comment)
 {
  		$.ajax({
-			url: '/trail-action/record/' + encodeURI(comment),
+			url: '/trail-comment/record/' + encodeURI(comment),
 			type: 'GET',
 			data: null,
 			done: function(result){
