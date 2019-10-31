@@ -10,12 +10,6 @@ db_connection = connect_to_database()
 #TODO: generate this unique everytime using os.urandom(16)
 webapp.secret_key = b'8\x9f\xf5\x83j\x9e\xaa\x83\x07+Ai\x9f\xd9\xc5_'
 
-# import camera driver
-if os.environ.get('CAMERA'):
-    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
-else:
-    from camera_opencv import Camera
-
 @webapp.route("/")
 def main():
     return render_template('record.html')
@@ -52,24 +46,6 @@ def trail_action_record(action):
     data = (session['trail_id'], timestamp, action)
     execute_query(db_connection, query, data)
     return("Action recorded");
-
-def gen(camera):
-    """Video streaming generator function."""
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-@webapp.route('/video_feed')
-def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen(Camera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-
-@webapp.route('/video')
-def index():
-    """Video streaming home page."""
-    return render_template('index.html')
 
 @webapp.route('/trail/start/<recorder_name>/<trail_number>', methods=['GET'])
 def start_trail(recorder_name="Anonymous", trail_number="42"):
