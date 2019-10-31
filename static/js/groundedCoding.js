@@ -35,6 +35,23 @@ function record_trail_action(action) {
 			})
 };
 
+/* Starts the trail by passing the recorder name and trial number */
+function start_trail() {
+    recorder_name = encodeURI($('#recorder_name').val())
+    trail_number = encodeURI($('#trail_number').val())
+
+		$.ajax({
+			url: '/trail/start/' + recorder_name + '/' + trail_number,
+			type: 'GET',
+			data: $('#trail-session-data').serialize(),
+			success: function(result){
+				alert("Trail started! \nServer says:" + result);
+			},
+			fail: function(result){
+				alert("Failed to start trail! \nError:" + result);
+				}
+			})
+}
 /* Stops the trail by stopping the video recording and saving the notes */
 function stop_trail() {
 		$.ajax({

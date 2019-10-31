@@ -71,12 +71,9 @@ def index():
     """Video streaming home page."""
     return render_template('index.html')
 
-@webapp.route('/trail/start')
-def start_trail():
+@webapp.route('/trail/start/<recorder_name>/<trail_number>', methods=['GET'])
+def start_trail(recorder_name="Anonymous", trail_number="42"):
     session['trail_start_time'] = time.time() #Time in UTC!
-    #TODO: Get data about this trail from the form!
-    recorder_name = "Samar"
-    trail_number = "42"
 
     #Create a record for this trail in traildb
     print("Saving the notes for this trail by updating this trail's record")
@@ -95,7 +92,7 @@ def start_trail():
     #Record this action of starting the trail!
     trail_action_record('Starting the trail')
     print ("Trail started with the id %s and on time %s"  % (session['trail_id'], session['trail_start_time']));
-    return str(session['trail_start_time'])
+    return str("Trail started at UNIX Timestamp session['trail_start_time']")
 
 #this will save the trail
 @webapp.route('/trail/stop', methods=['POST'])
