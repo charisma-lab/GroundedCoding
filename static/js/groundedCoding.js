@@ -55,14 +55,14 @@ function start_trail() {
 /* Stops the trail by stopping the video recording and saving the notes */
 function stop_trail() {
     //Stop the video recording in the browser
-    toggleRecording();
+    //toggleRecording();
     //Notify the backend of the end of trail
 		$.ajax({
 			url: '/trail/stop',
 			type: 'POST',
 			data: $('#trail-data').serialize(),
 			success: function(result){
-				alert("Trail stopped! \nServer says:" + result);
+				alert("Session stopped! \nServer says:" + result);
 			},
 			fail: function(result){
 				alert("Failed to stop trail! \nError:" + result);

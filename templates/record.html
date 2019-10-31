@@ -43,8 +43,8 @@
 
   <div>
       <form id="trail-data" name='trail-data' action='' method=''>
-      <h3>Notes</h3>
-      <textarea id='comment' class="" rows="5" cols="5" name="comment"></textarea>
+      <h3>Comment</h3>
+      <textarea id='comment' class="" rows="10" cols="10" name="comment"></textarea>
       </form>
       <button type='button' class='trail_comment_button'
         onClick="record_trail_comment(document.getElementById('comment').value)">Record comment</button>
@@ -61,7 +61,7 @@
     </div> 
     <br>
     <div>
-        <button type="button" class="" onClick="stop_trail()">Stop Trail</button>
+        <button type="button" class="" onClick="stop_trail()">Stop Session</button>
     </div>
     <!-- uses the mediarecorder from https://github.com/samdutton/simpl/tree/gh-pages/mediarecorder -->
     <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>

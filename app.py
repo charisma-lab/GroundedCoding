@@ -109,7 +109,7 @@ def stop_trail():
         stopped_on = %s
         WHERE trail_id = %s
         """
-    data = (request.form['notes'], time.strftime('%Y-%m-%d %H:%M:%S'), session['trail_id']);
+    data = ('', time.strftime('%Y-%m-%d %H:%M:%S'), session['trail_id']);
     execute_query(db_connection, query, data)
     #Create an entry in the trail log about this stop action
     trail_action_record("Stopping the trail")
