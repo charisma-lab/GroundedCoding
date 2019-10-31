@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.38-MariaDB, for debian-linux-gnu (x86_64)
+-- MariaDB dump 10.17  Distrib 10.4.8-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: traildb
 -- ------------------------------------------------------
--- Server version	10.0.38-MariaDB-0ubuntu0.16.04.1
+-- Server version	10.4.8-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,10 +27,10 @@ CREATE TABLE `trail` (
   `recorder_name` varchar(20) NOT NULL,
   `trail_number` int(8) NOT NULL,
   `started_on` datetime NOT NULL,
-  `trail_notes` longtext,
+  `trail_notes` longtext DEFAULT NULL,
   `stopped_on` datetime DEFAULT NULL,
   PRIMARY KEY (`trail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,8 +45,9 @@ CREATE TABLE `trail_action_log` (
   `trail_id` int(8) NOT NULL,
   `time_in_trail` decimal(10,2) NOT NULL,
   `action` varchar(255) NOT NULL,
+  `type` varchar(10) NOT NULL,
   PRIMARY KEY (`logid`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +59,4 @@ CREATE TABLE `trail_action_log` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-31 17:21:38
+-- Dump completed on 2019-10-30 23:49:41
