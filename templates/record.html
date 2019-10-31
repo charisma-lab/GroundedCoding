@@ -20,8 +20,10 @@
    <div>
       <form id="trail-data" name='trail-data' action='' method=''>
       <h3>Notes</h3>
-      <textarea class="" rows="25" cols="25" name="notes"></textarea>
+      <textarea id='comment' class="" rows="5" cols="5" name="comment"></textarea>
       </form>
+      <button type='button' class='trail_comment_button'
+        onClick="record_trail_comment(document.getElementById('comment').value)">Record comment</button>
    </div>
 
     <div>

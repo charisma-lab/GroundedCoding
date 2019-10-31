@@ -1,3 +1,22 @@
+function record_trail_comment(comment)
+{
+ 		$.ajax({
+			url: '/trail-action/record/' + encodeURI(comment),
+			type: 'GET',
+			data: null,
+			done: function(result){
+				alert("Comment recorded! \nServer says:" + result);
+			},
+      /*TODO: FIX THIS! It does not work even for HTTP 500*/
+			fail: function(result){
+				alert("Failed to record comment! \nError:" + result);
+				},
+      always: function(result){
+        alert("Server said: " + result);
+        }
+			})
+}
+
 function record_trail_action(action) {
 		$.ajax({
 			url: '/trail-action/record/' + encodeURI(action.innerHTML),
