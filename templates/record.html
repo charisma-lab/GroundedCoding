@@ -14,8 +14,6 @@
   </head>
   <body>
 
-   <div id='camera_view'> 
-   <h3>Overall Camera View</h3>
 
    <div>
      <form id='trail-session-data' name='trail-session-data' action=''  method=''>
@@ -24,7 +22,10 @@
        <button type='button' class='start_trail' onClick="start_trail()">Start Session</button>
     </form>
    </div>
-     
+  <br/>
+  <br/>
+  <div id='camera_view'> 
+    <h3>Overall Camera View</h3>
     <video id="gum" autoplay muted playsinline width=400 height=400></video>
     <video id="recorded" autoplay loop playsinline style='display:none'></video>
     <img id='snapshot' src="" width=400 height=400 />
