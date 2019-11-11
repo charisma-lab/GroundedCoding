@@ -40,6 +40,11 @@ Now, run
 This will activate the virtual environment as well as run the application.
 Now you can go to the browser to use the application!
 
+The default URL is as https://localhost:5000
+
+**NOTE** Your browser will probably show a warning about the https certificate.
+You can safely ignore it as all your data will be local.
+
 This is what it looks like:
 
 ![Annotations Interface for Halloween](./meta/screenshot.png)
