@@ -54,7 +54,10 @@ function start_trail() {
 				alert("Failed to start trail! \nError:" + result);
 				}
 			})
+   //show the session interface
+   $("#session").show(); 
 }
+
 /* Stops the trail by stopping the video recording and saving the notes */
 function stop_trail() {
     //Stop the video recording in the browser
@@ -71,8 +74,8 @@ function stop_trail() {
 				alert("Failed to stop trail! \nError:" + result);
 				}
 			})
-    //Offer the video recording for download
-    downloadVideo()
+  //hide the session interface
+  $("#session").hide()
 };
 
 function save_snapshot() {
