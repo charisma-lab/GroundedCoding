@@ -56,6 +56,8 @@ function start_trail() {
 			})
    //show the session interface
    $("#session").show(); 
+   //hide the session meta interface
+   $("#session_metadata").hide()
 }
 
 /* Stops the trail by stopping the video recording and saving the notes */
@@ -76,6 +78,9 @@ function stop_trail() {
 			})
   //hide the session interface
   $("#session").hide()
+
+  //show the session metadata interface
+  $("#session_metadata").show()
 };
 
 function save_snapshot() {
