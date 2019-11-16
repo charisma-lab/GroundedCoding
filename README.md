@@ -49,3 +49,26 @@ This is what it looks like:
 
 ![Annotations Interface for Halloween](./meta/screenshot.png)
 
+
+Exporting data to CSV
+===
+
+Run the following SQL command on the mysql command line prompt, 
+to export all the data to a CSV file named `trail_action_log.csv`. 
+
+This file will be saved to either the directory where you are running the
+command from or other location. Having systemd can affect the location as described on 
+https://stackoverflow.com/a/11484527
+
+```
+USE traildb;
+
+SELECT trail_action_log.trail_id, trail_action_log.time_in_trail, trail_action_log.action, trail.recorder_name 
+FROM trail_action_log
+JOIN trail on trail.trail_id = trail_action_log.trail_id
+INTO OUTFILE 'trail_action_log.csv'
+FIELDS TERMINATED BY "," 
+ENCLOSED BY "\"" 
+LINES TERMINATED BY "\n" 
+```
+
