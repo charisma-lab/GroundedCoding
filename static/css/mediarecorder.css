@@ -2,11 +2,25 @@ button {
   margin: 0 3px 10px 0;
   padding-left: 2px;
   padding-right: 2px;
-  width: 99px;
+  width: 200px;
+  height: 25px;
 }
 
 button:last-of-type {
   margin: 0;
+}
+
+/*p {
+  font-family: "Times New Roman", Times, serif;
+}
+
+header{
+  font-family: "Times New Roman", Times, serif;
+}*/
+
+button {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.8em;
 }
 
 p.borderBelow {
@@ -47,3 +61,50 @@ video#gumVideo {
     margin: 0 10px 10px 0;
   }
 }
+
+
+label {
+	margin: 75px 500px 75px 600px;
+
+}
+
+#recorder_name {
+	margin: 1px 500px 75px 600px;
+}
+
+#trail_number {
+	margin: 1px 500px 75px 600px;
+
+}
+
+#start_trail_btn {
+	margin: 1px 500px 75px 600px;
+
+}
+
+#stop_btn {
+  margin-left: 1200px;
+	color: white;
+	background-color: red;
+}
+
+#Spatial_btn {
+	background-color: #ff9f19;
+
+
+}
+
+#Sentiment_btn {
+	background-color: #ff9f19;
+}
+
+#Relational_btn {
+	background-color: #ff9f19;
+}
+
+#Parts_btn {
+	background-color: #ff9f19;
+}
+
+
+

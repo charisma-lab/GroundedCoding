@@ -20,6 +20,8 @@ function record_trail_comment(comment)
 
 function record_trail_action(action) {
 
+  console.log(action);
+
   save_snapshot_with_button(encodeURI(action.innerHTML))
   $.ajax({
 			url: '/trail-action/record/' + encodeURI(action.innerHTML),
@@ -55,7 +57,7 @@ function start_trail() {
 				}
 			})
    //show the session interface
-   $("#session").show(); 
+   $("#session").show();
    //hide the session meta interface
    $("#session_metadata").hide()
 }
@@ -167,3 +169,5 @@ function save_snapshot_with_button(button) {
     window.URL.revokeObjectURL(url);
   }, 100);
 };
+
+

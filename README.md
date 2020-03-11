@@ -72,3 +72,34 @@ ENCLOSED BY "\""
 LINES TERMINATED BY "\n" 
 ```
 
+if output one single session in the database, use
+
+select * from trail where trail_id = 50 
+
+
+
+Take screenshot without comments and labels
+===
+
+Click "Save Screenshot" button.
+
+*** After take first screenshot, the browser will ask user to choose an address for saving the screenshot picture. And it's will keep asking the address each time until user set a default address.    
+
+
+Take screenshot with labels
+===
+
+Click buttons under "Labels" text.
+
+
+Take screenshot with comments
+===
+
+Type contexts in the textbox under "Comment" text. After type contexts, click "Record comment" for saving comments.
+
+
+
+Stop annotation system
+===
+
+Click "Stop Recording Data" button for stop the system.

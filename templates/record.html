@@ -11,57 +11,113 @@
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/mediarecorder.css')}}">
 
+    <style>
+		html,body,h1,h2,h3,h4,h5,h6 {
+  			font-family: "Times New Roman", Times, serif;
+		}
+	</style>
+
   </head>
   <body>
 
+
+  <script>
+  	function add_button() {
+  		var btn = document.createElement ("BUTTON");
+  		// btn.onClick = record_trail_action;
+  		btn.setAttribute("onClick", "record_trail_action(this)");
+  		btn.classList.add("trail_action_btn");
+  		document.getElementById("btn_div").appendChild(btn);
+  		btn.innerHTML = document.getElementById("add_button_txt").value;
+  	}
+  </script>
+
    <div id='session_metadata'>
      <form id='trail-session-data' name='trail-session-data' action=''  method=''>
-       <label for='recorder_name'>Your Name</label><input id='recorder_name' type='text' name='recorder_name' placeholder='Samar' value=''>
-       <label for='trail_number'>Session Number</label><input id='trail_number'  type='text' name='trail_number' placeholder='42' value=''>  
+      <div >
+          <label for='recorder_name'>Your Name</label>
+      </div>
+      <div>
+       <input id='recorder_name' type='text' name='recorder_name' placeholder='Samar' value=''>
+       </div>
+       <div>
+       <label for='trail_number'>Session Number</label>
+      </div>
+      <div>
+       <input id='trail_number'  type='text' name='trail_number' placeholder='42' value=''>  
+       </div>
+       <div id='start_trail_btn'>
        <button type='button' class='start_trail' onClick="start_trail()">Start Recording Data</button>
+        </div>
     </form>
    </div>
   <br/>
   <br/>
   <div id='session'>
     <div id='camera_view'> 
-      <h3>Overall Camera View</h3>
-      <video id="gum" autoplay muted playsinline width=400 height=400></video>
+      <h3>Camera View</h3>
+<!--       <table border=0px, bordercolor=red>
+      	<tr>
+      		<td width="300" height="220"> -->
+      <video id="gum" autoplay muted playsinline width=310 height=310></video>
       <video id="recorded" autoplay loop playsinline style='display:none'></video>
-      <img id='snapshot' src="" width=400 height=400 />
-      <canvas style="display:none;" width=400 height=400></canvas>
+<!--   </td>
+  <td width="300" height="280"> -->
+      <img id='snapshot' src="" width=310 height=250 />
+      <canvas style="display:none;" width=310 height=250></canvas>
+<!--   </td>
+  </tr>
+  </table> -->
       
       <div>
         <button id="record" style='display:None'>Start Streaming</button>
         <button id="play" disabled style='display:None'>Play</button> 
-        <button id='snapshot-button' onClick='save_snapshot()'>Save Screenshot</button>
+        <button id='snapshot-button' onClick='save_snapshot()'>Take Screenshot</button>
         <!-- hide this button until we figure out how to completely disassociate
           it -->
         <button style="display: none;" id="download" disabled>Download</button>
       </div>
      </div>
 
+    <div id="btn_div" border= 2px bordercolor=red>
+        <h3>Labels</h3>
+        <button id="Spatial_btn" type="button" class="trail_action_btn"
+          onClick="record_trail_action(this)" >Spatial Gesture</button>
+        <button id="Sentiment_btn" type="button" class="trail_action_btn"
+          onClick="record_trail_action(this)">Sentiment Gesture</button>
+        <button id="Relational_btn" type="button" class="trail_action_btn"
+          onClick="record_trail_action(this)">Relational Gesture</button>
+        <button id="Parts_btn" type="button" class="trail_action_btn"
+          onClick="record_trail_action(this)">Parts of speech</button>
+
+        <button onclick="add_button()">+ add button</button>
+        <br>
+
+      </div>
+        <div>
+       		<textarea id='add_button_txt' row="1" cols="10px" style="width: 95px; height: 15px;"></textarea>
+    	</div> 
+
     <div>
         <form id="trail-data" name='trail-data' action='' method=''>
         <h3>Comment</h3>
-        <textarea id='comment' class="" rows="10" cols="10" name="comment"></textarea>
+          <table border=0px, bordercolor=red>
+        <tr>
+          <td width="300" height="100">
+        <textarea id='comment' class="" rows="5" cols=80px name="comment"></textarea>
+          </td>
+        </tr>
+      </table>
+
         </form>
         <button type='button' class='trail_comment_button'
           onClick="record_trail_comment(document.getElementById('comment').value)">Record comment</button>
      </div>
 
-      <div>
-        <h3>Labels</h3>
-        <button type="button" class="trail_action_btn"
-          onClick="record_trail_action(this)">Love it!</button>
-        <button type="button" class="trail_action_btn"
-          onClick="record_trail_action(this)">Bad!</button>
-        <button type="button" class="trail_action_btn"
-          onClick="record_trail_action(this)">What the heck!</button>
-      </div> 
+
       <br>
       <div>
-          <button type="button" class="" onClick="stop_trail()">Stop Recording Data</button>
+          <button id="stop_btn" type="button" class="" onClick="stop_trail()">Stop Recording Data</button>
       </div>
     </div>
     <!-- uses the mediarecorder from https://github.com/samdutton/simpl/tree/gh-pages/mediarecorder -->
