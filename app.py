@@ -119,5 +119,44 @@ def stop_trail():
     session.pop('trail_start_time', None)
     return("Trail Stopped!")
 
+
+
+@webapp.route("/get_my_file")
+def deliver_file():
+    '''
+    This is the method that will actually deliver the file
+    '''
+    filename = generate_and_return_filename()
+    return send_file(filename, as_attachment=True)
+
+#Note how this method does NOT have a app route for itself.
+#That's because it will be called by deliver_file.
+def generate_and_return_filename():
+    '''
+    This is where you generate the file that is to be sent and then 
+    tell the path where it's generated so that it can be sent to the browser
+    '''
+
+    query = """
+            SELECT * FROM trail_action_log INTO OUTFILE 
+            '/usr/local/bin/trail_log.csv' FIELDS TERMINATED BY 
+            ',' ENCLOSED BY '''' LINES TERMINATED BY '\n'
+
+            """
+  
+    execute_query(db_connection, query)
+
+
+    
+    filename_with_path = '/usr/local/bin/trail_log.csv'
+    
+    #DO the magic to generate the file here -- THIS CAN BE REPLACED WITH WHATEVER YOU HAVE TO GENERATE THE FILE
+
+    #Finally return the filename with path
+    return filename_with_path    
+
+
+
+
 if __name__ == '__main__':
     webapp.run(host='0.0.0.0', ssl_context='adhoc', debug=False)

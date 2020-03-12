@@ -18,7 +18,7 @@
 	</style>
 
   </head>
-  <body>
+  <body bgcolor="#f2f2f2">
 
 
   <script>
@@ -53,22 +53,53 @@
    </div>
   <br/>
   <br/>
+
   <div id='session'>
+
+  <table border=0px, bordercolor=red>
+    <tr>
+      <td width="400" height="220">
+    
     <div id='camera_view'> 
       <h3>Camera View</h3>
-<!--       <table border=0px, bordercolor=red>
-      	<tr>
-      		<td width="300" height="220"> -->
+
       <video id="gum" autoplay muted playsinline width=310 height=310></video>
       <video id="recorded" autoplay loop playsinline style='display:none'></video>
-<!--   </td>
-  <td width="300" height="280"> -->
+
       <img id='snapshot' src="" width=310 height=250 />
       <canvas style="display:none;" width=310 height=250></canvas>
-<!--   </td>
+
+
+  </td>
+
+ 
+  <td width="30" height="220" rowspan="3">
+
+
+        <div>
+        <form id="trail-data" name='trail-data' action='' method=''>
+        <h3>Comment</h3>
+          <table border=0px, bordercolor=red>
+        <tr>
+          <td width="300" height="100">
+        <textarea id='comment' class="" rows="30" cols=50px name="comment"></textarea>
+          </td>
+        </tr>
+      </table>
+
+        </form>
+        <button type='button' class='trail_comment_button'
+          onClick="record_trail_comment(document.getElementById('comment').value)">Record comment</button>
+     </div>
+
+
+  </td>
+
+
   </tr>
-  </table> -->
-      
+
+  <tr>  
+  <td>    
       <div>
         <button id="record" style='display:None'>Start Streaming</button>
         <button id="play" disabled style='display:None'>Play</button> 
@@ -78,6 +109,14 @@
         <button style="display: none;" id="download" disabled>Download</button>
       </div>
      </div>
+
+  </td>   
+  </tr>
+
+
+  <tr>
+
+  <td>
 
     <div id="btn_div" border= 2px bordercolor=red>
         <h3>Labels</h3>
@@ -95,8 +134,17 @@
 
       </div>
         <div>
-       		<textarea id='add_button_txt' row="1" cols="10px" style="width: 95px; height: 15px;"></textarea>
+       		<textarea id='add_button_txt' row="1" cols="20px" style="width: 95px; height: 15px;"></textarea>
     	</div> 
+
+  </td>
+
+  </tr>
+
+<!-- 
+  <tr>
+
+  <td>
 
     <div>
         <form id="trail-data" name='trail-data' action='' method=''>
@@ -114,12 +162,26 @@
           onClick="record_trail_comment(document.getElementById('comment').value)">Record comment</button>
      </div>
 
+  </td>
+
+  </tr> -->
+
+  <tr>
+
+  <td colspan="2">
 
       <br>
       <div>
           <button id="stop_btn" type="button" class="" onClick="stop_trail()">Stop Recording Data</button>
       </div>
     </div>
+
+  </td>
+
+  </tr>
+
+    </table>
+
     <!-- uses the mediarecorder from https://github.com/samdutton/simpl/tree/gh-pages/mediarecorder -->
     <script src="{{url_for('static', filename='js/mediarecorder.js')}}"></script>
     <!-- hide the session interface by default -->
