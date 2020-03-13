@@ -73,6 +73,11 @@ function stop_trail() {
 			data: $('#trail-data').serialize(),
 			success: function(result){
 				alert("Session stopped! \nServer says:" + result);
+
+        console.log("hello")
+
+        window.location.href = '/get_my_file';
+
 			},
 			fail: function(result){
 				alert("Failed to stop trail! \nError:" + result);

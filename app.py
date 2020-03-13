@@ -1,9 +1,10 @@
-from flask import Flask, render_template, Response, session, escape, request
+from flask import Flask, render_template, Response, session, escape, request, send_file, send_from_directory, safe_join, abort
 from flask_api import status
 from db_connector import *
 from importlib import import_module
 import os
 import time
+import datetime
 
 webapp = Flask(__name__)
 db_connection = connect_to_database()
@@ -137,18 +138,25 @@ def generate_and_return_filename():
     tell the path where it's generated so that it can be sent to the browser
     '''
 
+    current_date_time = datetime.datetime.today()
+    dt_string = current_date_time.strftime('%d_%m_%y_%I_%M_%S_%p')
+
+    filename_with_path = "/tmp/%s.csv" % (dt_string)
+
+    print(session['trail_id']);
+
     query = """
-            SELECT * FROM trail_action_log INTO OUTFILE 
-            '/usr/local/bin/trail_log.csv' FIELDS TERMINATED BY 
+            SELECT * FROM trail_action_log WHERE trail_id = %s
+            INTO OUTFILE 
+            '%s' FIELDS TERMINATED BY 
             ',' ENCLOSED BY '''' LINES TERMINATED BY '\n'
 
-            """
+            """ % (session['trail_id'],filename_with_path)
   
     execute_query(db_connection, query)
 
 
     
-    filename_with_path = '/usr/local/bin/trail_log.csv'
     
     #DO the magic to generate the file here -- THIS CAN BE REPLACED WITH WHATEVER YOU HAVE TO GENERATE THE FILE
 

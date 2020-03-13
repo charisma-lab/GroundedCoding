@@ -4,6 +4,8 @@ button {
   padding-right: 2px;
   width: 200px;
   height: 25px;
+  border-color: #cccccc;
+
 }
 
 button:last-of-type {
