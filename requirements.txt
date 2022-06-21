@@ -11,7 +11,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 mysqlclient==1.4.4
-numpy==1.16.5
+numpy==1.22.0
 opencv-python==4.1.0.25
 pycparser==2.19
 pyOpenSSL==19.0.0
